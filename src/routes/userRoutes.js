@@ -4,10 +4,13 @@ const auth = require('../middlewares/authMiddleware');
 const upload = require('../middlewares/upload');
 const userController = require('../controllers/userController');
 
-// get current user profile
-router.get('/me', auth, userController.getProfile);
+// Get all users
+router.get('/get_all_users', auth, userController.getAllUsers);
 
-// update profile (username, email, profileImage)
-router.put('/me', auth, upload.single('profileImage'), userController.updateProfile);
+// Get user by ID
+router.get('/:id', auth, userController.getUserById);
+
+// Update user by ID
+router.put('/:id', auth, upload.single('profileImage'), userController.updateUserById);
 
 module.exports = router;
